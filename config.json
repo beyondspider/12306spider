@@ -1,0 +1,38 @@
+{
+    "user": {
+        "userName": "",
+        "password": "",
+        "name":"",
+        "idno":"",
+        "mobileno":""
+    },
+    "orderInfo": {
+        "startDate": "2018-11-25",
+        "startStation": "NJH",
+        "endStation": "SHH",
+        "seatType":"3"
+    },
+    "network": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36",
+        "proxies": {
+            "http": "http://127.0.0.1:8888",
+            "https": "http://127.0.0.1:8888"
+        }
+    },
+    "tempFolder": "temp",
+    "cookie": {
+        "filename": "cookie.txt"
+    },
+    "captcha": {
+        "filename": "captcha.jpg",
+        "mode": "manual",
+        "manual": {
+
+        }
+    },
+    "station": {
+        "srcFilename": "station.txt",
+        "destNameFilename": "stationName.json",
+        "destCodeFilename": "stationCode.json"
+    }
+}
