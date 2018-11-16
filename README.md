@@ -35,4 +35,4 @@ admin@beyondspider.com
 目前只实现了基本下单流程，需要进一步优化和完善。
 
 # 关注公众号
-![logo](https://github.com/beyondspider/12306spider/master/logo.gif)
+![logo](https://github.com/beyondspider/12306spider/blob/master/logo.gif)
