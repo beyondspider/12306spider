@@ -22,7 +22,7 @@ class TicketService(object):
     def __init__(self):
         self.session = requests.session()
         self.configJson = self.getConfig()
-        self.user = self.configJson["user"]
+        self.passenger = self.configJson["passenger"]
         self.orderInfo = self.configJson["orderInfo"]
         self.userName = self.configJson["user"]["userName"]
         self.password = self.configJson["user"]["password"]
@@ -477,6 +477,30 @@ class TicketService(object):
                 passengerNameList.append(a['passenger_name'])
             return passengerNameList
 
+    def getPassengerTicketStr(self):
+        passengerTicketList = []
+        for item in self.passenger:
+            p = self.orderInfo["seatType"] + ",0,1," + item["name"] + ",1," + item["idno"]+ "," + item["mobileno"]+ ",N"
+            print(p)
+            passengerTicketList.append(p)
+
+        passengerTicketStr = '_'.join(passengerTicketList)
+        print(passengerTicketStr)
+
+        return passengerTicketStr
+
+    def getOldPassengerStr(self):
+        oldPassengerStrList = []
+        for item in self.passenger:
+            p = item["name"] + ",1,"+ item["idno"] + ",1"
+            print(p)
+            oldPassengerStrList.append(p)
+
+        oldPassengerStr = '_'.join(oldPassengerStrList) + '_'
+        print(oldPassengerStr)
+
+        return oldPassengerStr
+
     def confirmPassengerCheckOrderInfo(self):
         url = 'https://kyfw.12306.cn/otn/confirmPassenger/checkOrderInfo'
         accept = "application/json, text/javascript, */*; q=0.01"
@@ -487,8 +511,8 @@ class TicketService(object):
         data = {
             'cancel_flag': '2',
             'bed_level_order_num': '000000000000000000000000000000',
-            'passengerTicketStr': self.orderInfo["seatType"] + ",0,1," + self.user["name"] + ",1," + self.user["idno"]+ "," + self.user["mobileno"]+ ",N",
-            'oldPassengerStr':  self.user["name"] + ",1,"+ self.user["idno"] + ",1_",
+            'passengerTicketStr': self.getPassengerTicketStr(),
+            'oldPassengerStr':  self.getOldPassengerStr(),
             'tour_flag': "dc",
             'randCode': '',
             '_json_att': '',
@@ -550,8 +574,8 @@ class TicketService(object):
         referer = "https://kyfw.12306.cn/otn/confirmPassenger/getQueueCount"
 
         data = {
-            'passengerTicketStr': self.orderInfo["seatType"] + ",0,1," + self.user["name"] + ",1," + self.user["idno"]+ "," + self.user["mobileno"]+ ",N",
-            'oldPassengerStr':  self.user["name"] + ",1,"+ self.user["idno"] + ",1_",
+            'passengerTicketStr': self.getPassengerTicketStr(),
+            'oldPassengerStr':  self.getOldPassengerStr(),
             "randCode": "",
             "purpose_codes": "00",
             "key_check_isChange": self.tokenModel["keyIsChange"],
