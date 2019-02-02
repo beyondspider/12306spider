@@ -282,7 +282,7 @@ class TicketService(object):
             "leftTicketDTO.to_station":toStation,
             "purpose_codes":purposeCodes
         }
-        url =  "https://kyfw.12306.cn/otn/leftTicket/query"
+        url =  "https://kyfw.12306.cn/otn/leftTicket/queryZ"
 
         accept = "*/*"
         host = "kyfw.12306.cn"
